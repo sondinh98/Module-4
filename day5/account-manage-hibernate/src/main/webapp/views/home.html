@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Account List</h2>
+    <a type="button" class="btn btn-primary" href="/create">Create new Account</a>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>User Password</th>
+            <th>User Birthday</th>
+            <th>Role</th>
+            <th>Avatar</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="a:${accounts}">
+            <td th:text="${a.id}"></td>
+            <td th:text="${a.userName}"></td>
+            <td th:text="${a.userPass}"></td>
+            <td th:text="${a.birthday}"></td>
+            <td th:text="${a.role.name}"></td>
+            <td>
+                <img th:src="${a.avatar}" width="300" height="350">
+            </td>
+            <td><a th:href="@{/accounts/edit (id=${a.id})}" type="button" class="btn btn-warning">Edit</a></td>
+            <td><a th:href="@{/accounts/delete/{id} (id=${a.id})}" type="button" class="btn btn-danger">Delete</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
